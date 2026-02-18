@@ -26,12 +26,6 @@ function out() {
 function fetch_artefacts() {
   local release="$1"
 
-  # Unlike upstream, pass auth header to asset downloads to support private repos.
-  local auth_header=()
-  if [[ -n ${GH_TOKEN:-} ]] ; then
-    auth_header=( "-H" "Authorization: Bearer $GH_TOKEN" )
-  fi
-
   { curl_api_wrapper \
          "https://api.github.com/repos/${bakery}/releases/tags/${release}" \
   | jq -r '.assets[] | "\(.name)\t\(.browser_download_url)"' | grep -E '(\bSHA256SUMS|\.conf)$' || true; } \
@@ -40,7 +34,6 @@ function fetch_artefacts() {
   while IFS=$'\t' read -r name url; do
     echo "  Fetching ${name} <-- ${url}"
     curl \
-      "${auth_header[@]}" \
       -o "${name}" -fsSL --retry-delay 1 --retry 60 --retry-connrefused --retry-max-time 60 \
        --connect-timeout 20  "${url}"
   done <downloads.txt

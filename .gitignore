@@ -1,0 +1,10 @@
+*.raw
+SHA256SUMS
+SHA256SUMS.*
+*.conf
+!sysupdate.conf.tmpl
+Release.md
+*-build.log
+downloads.txt
+release-tag.txt
+releases_to_build.txt

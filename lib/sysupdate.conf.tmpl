@@ -1,0 +1,13 @@
+[Transfer]
+Verify=false
+
+[Source]
+Type=url-file
+Path=https://{BAKERY_HUB}/extensions/{SOURCE_REL}/
+MatchPattern={MATCH_PATTERN}
+
+[Target]
+InstancesMax=3
+Type=regular-file
+Path=/opt/extensions/{TARGET_FILE}
+CurrentSymlink=/etc/extensions/{EXTNAME}.raw

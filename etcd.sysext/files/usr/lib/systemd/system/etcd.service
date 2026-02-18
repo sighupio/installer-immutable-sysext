@@ -1,0 +1,40 @@
+[Unit]
+Description=etcd key-value store
+Documentation=https://github.com/etcd-io/etcd
+After=network-online.target local-fs.target
+Wants=network-online.target local-fs.target
+Conflicts=etcd-member.service
+Conflicts=etcd2.service
+
+[Service]
+Type=notify
+User=etcd
+Group=etcd
+
+# Environment configuration from /etc/etcd/etcd.env
+# This file must be created and configured before starting etcd
+# Use the template from /usr/share/etcd/etcd.env.j2
+EnvironmentFile=/etc/etcd/etcd.env
+
+# Working directory for etcd data
+WorkingDirectory=/var/lib/etcd
+
+# Main process - all configuration via environment variables
+ExecStart=/usr/bin/etcd
+
+# Restart configuration
+Restart=on-failure
+RestartSec=5s
+TimeoutStartSec=0
+
+# Resource limits
+LimitNOFILE=65536
+LimitMEMLOCK=infinity
+
+# Process priority (same as original role)
+Nice=-10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=2
+
+[Install]
+WantedBy=multi-user.target

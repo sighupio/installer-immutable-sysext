@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: 'branch to build'
+        description: "branch to build"
         type: string
         required: false
-        default: 'main'
+        default: "main"
   schedule:
     # Weekly on Mondays at 5am UTC
-    - cron: '0 5 * * 1'
+    - cron: "0 5 * * 1"
 
 jobs:
   list-builds:
@@ -107,7 +107,7 @@ jobs:
             bakery/*-build.log
 
   update-extension-metadata:
-    needs: [ list-builds, create-release ]
+    needs: [list-builds, create-release]
     if: ${{ needs.list-builds.outputs.extensions != '[]' && needs.list-builds.outputs.extensions != '' }}
     strategy:
       matrix:
@@ -155,7 +155,7 @@ jobs:
             bakery/*.conf
 
   update-global-metadata:
-    needs: [ list-builds, update-extension-metadata ]
+    needs: [list-builds, update-extension-metadata]
     if: ${{ needs.list-builds.outputs.extensions != '[]' && needs.list-builds.outputs.extensions != '' }}
     runs-on: ubuntu-24.04
     permissions:

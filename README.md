@@ -1,5 +1,9 @@
 # installer-immutable-sysext
 
+> **WARNING: This project is under active development and is NOT ready for production use. APIs, configurations, and behavior may change without notice. Use at your own risk.**
+
+> This repository is a **partial fork** of [flatcar/sysext-bakery](https://github.com/flatcar/sysext-bakery). Not all features from the original project are included, and significant modifications have been made to fit the needs of this project.
+
 Build and publish systemd system extensions (`.raw` images) for **Kubernetes** and **Containerd** on immutable Linux distributions (e.g., Flatcar Container Linux).
 
 Based on the [flatcar/sysext-bakery](https://github.com/flatcar/sysext-bakery) framework.
@@ -10,6 +14,8 @@ Based on the [flatcar/sysext-bakery](https://github.com/flatcar/sysext-bakery) f
 |-----------|-----------|
 | `kubernetes` | kubelet, kubeadm, kubectl, CNI plugins |
 | `containerd` | containerd (static), runc |
+| `etcd` | etcd |
+| `kubeadm` | kubeadm configuration and setup |
 
 ## Usage
 

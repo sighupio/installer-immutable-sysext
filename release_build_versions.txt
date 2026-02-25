@@ -16,6 +16,7 @@ etcd latest
 keepalived latest
 
 # Kubeadm
+kubeadm v1.33.6
 kubeadm latest
 
 # Kubernetes

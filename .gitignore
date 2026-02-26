@@ -3,6 +3,7 @@ SHA256SUMS
 SHA256SUMS.*
 *.conf
 !sysupdate.conf.tmpl
+!*.sysext/files/**/*.conf
 Release.md
 *-build.log
 downloads.txt

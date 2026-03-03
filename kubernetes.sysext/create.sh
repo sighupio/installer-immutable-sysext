@@ -78,5 +78,23 @@ function populate_sysext_root() {
     _create_sysupdate "${extname}" "${extname}-${majorver}.@v-%a.raw" "${extname}" "${extname}" "${extname}-${majorver}.conf"
     mv "${extname}-${majorver}.conf" "${rundir}"
   fi
+
+  # Fix kubelet service files permissions for CIS Benchmark compliance
+  announce "Fixing systemd service file permissions for CIS compliance"
+
+  # Find and fix all systemd unit files and drop-ins related to kubelet
+  if [[ -d "${sysextroot}/usr/lib/systemd/system" ]]; then
+    find "${sysextroot}/usr/lib/systemd/system/" -type f \( \
+      -name "kubelet.service" -o \
+      -path "*/kubelet.service.d/*" \
+    \) -exec chmod 600 {} \;
+
+    # Report what was fixed
+    announce "Fixed permissions for kubelet service files:"
+    find "${sysextroot}/usr/lib/systemd/system/" -type f \( \
+      -name "kubelet.service" -o \
+      -path "*/kubelet.service.d/*" \
+    \) -exec ls -l {} \;
+  fi
 }
 # --

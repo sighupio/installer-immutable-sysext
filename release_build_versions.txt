@@ -20,6 +20,7 @@ kubeadm v1.33.6
 kubeadm latest
 
 # Kubernetes
+kubernetes v1.34.4
 kubernetes v1.33.6
 kubernetes v1.33.4
 kubernetes latest

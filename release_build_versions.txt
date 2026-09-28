@@ -17,10 +17,14 @@ keepalived v2.3.4
 keepalived latest
 
 # Kubeadm
+kubeadm v1.36.5
+kubeadm v1.35.9
 kubeadm v1.33.6
 kubeadm latest
 
 # Kubernetes
+kubernetes v1.36.5
+kubernetes v1.35.9
 kubernetes v1.35.5
 kubernetes v1.34.8
 kubernetes v1.34.4
